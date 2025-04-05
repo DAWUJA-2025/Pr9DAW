@@ -2,6 +2,7 @@ package uja.daw.librosmvc.librosmvcsb.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import uja.daw.librosmvc.librosmvcsb.modelo.Libro;
 public class LibrosController {
 
     @Autowired
+    @Qualifier("librosDAOJpa")  // Especifica que se usará la implementación JPA
     private LibrosDAO librosDAO;
 
     @GetMapping("")
@@ -30,7 +32,7 @@ public class LibrosController {
             ModelMap model) {
 
         if (result.hasErrors()) {
-            model.addAttribute("libros", librosDAO.buscaTodos()); // Para mantener el listado
+            model.addAttribute("libros", librosDAO.buscaTodos());
             return "libros/index";
         }
 
