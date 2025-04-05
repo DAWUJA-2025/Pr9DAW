@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,19 +23,24 @@
 </ul>
 
 <h1>Alta de libro</h1>
-<form method="POST" action="libros">
-    <div>
-        <label>Libro:
-            <input type="text" name="titulo" value="${titulo}" />
-        </label>
-    </div>
-    <div>
-        <label>ISBN:
-            <input type="text" name="isbn" value="${isbn}" />
-        </label>
-    </div>
-    <input type="submit" name="enviar" value="Alta">
-</form>
+
+<c:if test="${not empty libro}">
+    <form:form method="POST" modelAttribute="libro" action="libros">
+        <div>
+            <label>Libro:
+                <form:input path="titulo" />
+                <form:errors path="titulo" cssStyle="color:red"/>
+            </label>
+        </div>
+        <div>
+            <label>ISBN:
+                <form:input path="isbn" />
+                <form:errors path="isbn" cssStyle="color:red"/>
+            </label>
+        </div>
+        <input type="submit" value="Alta" />
+    </form:form>
+</c:if>
+
 </body>
 </html>
-
