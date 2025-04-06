@@ -25,6 +25,12 @@ public class LibrosDAOJpa implements LibrosDAO {
         return em.createQuery("SELECT l FROM Libro l", Libro.class).getResultList();
     }
 
-    // Otros métodos del DAO...
+    @Override
+    public void borra(String isbn) {
+        // Se asume que el ISBN es la clave primaria
+        Libro libro = em.find(Libro.class, isbn);
+        if(libro != null) {
+            em.remove(libro);
+        }
+    }
 }
-

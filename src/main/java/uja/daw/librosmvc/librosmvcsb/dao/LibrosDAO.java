@@ -6,4 +6,6 @@ import java.util.List;
 public interface LibrosDAO {
     void crea(Libro libro);
     List<Libro> buscaTodos();
+
+    void borra(String isbn);;
 }

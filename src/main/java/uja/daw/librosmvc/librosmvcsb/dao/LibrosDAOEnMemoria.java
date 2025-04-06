@@ -18,6 +18,11 @@ public class LibrosDAOEnMemoria implements LibrosDAO {
 
     @Override
     public List<Libro> buscaTodos() {
-        return new ArrayList<>(libros); // Para evitar modificar la lista original
+        return new ArrayList<>(libros); // Retornamos una copia para evitar modificaciones directas
+    }
+
+    @Override
+    public void borra(String isbn) {
+        libros.removeIf(libro -> libro.getIsbn().equals(isbn));
     }
 }

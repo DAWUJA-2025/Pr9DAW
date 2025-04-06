@@ -15,13 +15,14 @@ import uja.daw.librosmvc.librosmvcsb.modelo.Libro;
 public class LibrosController {
 
     @Autowired
-    @Qualifier("librosDAOJpa")  // Especifica que se usará la implementación JPA
+    @Qualifier("librosDAOJpa")  // Se utiliza la implementación JPA
     private LibrosDAO librosDAO;
 
+    // Listado y formulario de alta
     @GetMapping("")
     public String listado(ModelMap model) {
         model.addAttribute("libros", librosDAO.buscaTodos());
-        model.addAttribute("libro", new Libro()); // Para el formulario
+        model.addAttribute("libro", new Libro()); // Para el formulario de alta
         return "libros/index";
     }
 
@@ -35,8 +36,15 @@ public class LibrosController {
             model.addAttribute("libros", librosDAO.buscaTodos());
             return "libros/index";
         }
-
         librosDAO.crea(libro);
         return "redirect:/libros";
     }
+
+    // Ejercicio 2: Borrado de libro
+    @GetMapping("/borra")
+    public String borraLibro(@RequestParam("isbn") String isbn) {
+        librosDAO.borra(isbn);
+        return "redirect:/libros";
+    }
+
 }

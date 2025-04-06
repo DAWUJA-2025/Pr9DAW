@@ -21,6 +21,7 @@
 - Cambiado index.jsp para actualizar los cambios hechos en las clases Libro y LibroController (Javier Navas)
 - Cambiado las classe LibrosController y Libro para utilizar la clase jpa (Javier Navas)
 - Cambiado el archivo application.properties (Javier Navas)
+- Realización del ejercicio 2 con los cambios asociados en las clases (Cristian J López)
 
 
 
