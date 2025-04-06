@@ -25,4 +25,12 @@ public class LibrosDAOEnMemoria implements LibrosDAO {
     public void borra(String isbn) {
         libros.removeIf(libro -> libro.getIsbn().equals(isbn));
     }
+
+    @Override
+    public Libro buscaPorIsbn(String isbn) {
+        return libros.stream()
+                .filter(libro -> libro.getIsbn().equals(isbn))
+                .findFirst()
+                .orElse(null);
+    }
 }

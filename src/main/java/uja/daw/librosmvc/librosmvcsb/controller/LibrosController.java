@@ -40,11 +40,16 @@ public class LibrosController {
         return "redirect:/libros";
     }
 
-    // Ejercicio 2: Borrado de libro
     @GetMapping("/borra")
     public String borraLibro(@RequestParam("isbn") String isbn) {
         librosDAO.borra(isbn);
         return "redirect:/libros";
     }
 
+    @GetMapping("/detalle")
+    public String detalleLibro(@RequestParam("isbn") String isbn, ModelMap model) {
+        Libro libro = librosDAO.buscaPorIsbn(isbn);
+        model.addAttribute("libro", libro);
+        return "libros/detalle";
+    }
 }

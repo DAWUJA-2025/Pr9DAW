@@ -7,5 +7,6 @@ public interface LibrosDAO {
     void crea(Libro libro);
     List<Libro> buscaTodos();
 
-    void borra(String isbn);;
+    void borra(String isbn);
+    Libro buscaPorIsbn(String isbn);
 }

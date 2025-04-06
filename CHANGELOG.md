@@ -14,6 +14,7 @@
 - Creación de rama Iteracion 1 (Javier Navas)
 - Creada la clase LibrosDAOjpa (Javier Navas)
 - Creado el archivo import.sql para tener datos de prueba (Javier Navas)
+- Creación del archivo detalle.jsp (Cristian J López)
 
 ### Changed
 
@@ -22,6 +23,7 @@
 - Cambiado las classe LibrosController y Libro para utilizar la clase jpa (Javier Navas)
 - Cambiado el archivo application.properties (Javier Navas)
 - Realización del ejercicio 2 con los cambios asociados en las clases (Cristian J López)
+- Realización del ejercicio 3 con los cambios asociados en las clases (Cristian J López)
 
 
 
