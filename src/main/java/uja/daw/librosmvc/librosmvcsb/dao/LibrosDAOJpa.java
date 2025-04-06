@@ -38,4 +38,9 @@ public class LibrosDAOJpa implements LibrosDAO {
     public Libro buscaPorIsbn(String isbn) {
         return em.find(Libro.class, isbn);
     }
+
+    @Override
+    public void actualiza(Libro libro) {
+        em.merge(libro);
+    }
 }

@@ -15,6 +15,7 @@
 - Creada la clase LibrosDAOjpa (Javier Navas)
 - Creado el archivo import.sql para tener datos de prueba (Javier Navas)
 - Creación del archivo detalle.jsp (Cristian J López)
+- Creación del archivo edita.jsp (Cristian J López)
 
 ### Changed
 
@@ -24,6 +25,7 @@
 - Cambiado el archivo application.properties (Javier Navas)
 - Realización del ejercicio 2 con los cambios asociados en las clases (Cristian J López)
 - Realización del ejercicio 3 con los cambios asociados en las clases (Cristian J López)
+- Realización del ejercicio 4 con los cambios asociados en las clases (Cristian J López)
 
 
 

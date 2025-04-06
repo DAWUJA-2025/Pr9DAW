@@ -9,4 +9,5 @@ public interface LibrosDAO {
 
     void borra(String isbn);
     Libro buscaPorIsbn(String isbn);
+    void actualiza(Libro libro);
 }

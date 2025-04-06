@@ -18,7 +18,6 @@ public class LibrosController {
     @Qualifier("librosDAOJpa")  // Se utiliza la implementación JPA
     private LibrosDAO librosDAO;
 
-    // Listado y formulario de alta
     @GetMapping("")
     public String listado(ModelMap model) {
         model.addAttribute("libros", librosDAO.buscaTodos());
@@ -51,5 +50,22 @@ public class LibrosController {
         Libro libro = librosDAO.buscaPorIsbn(isbn);
         model.addAttribute("libro", libro);
         return "libros/detalle";
+    }
+
+    @GetMapping("/edita")
+    public String editaLibro(@RequestParam("isbn") String isbn, ModelMap model) {
+        Libro libro = librosDAO.buscaPorIsbn(isbn);
+        model.addAttribute("libro", libro);
+        return "libros/edita";
+    }
+
+    @PostMapping("/edita")
+    public String guardaEdicion(@Valid @ModelAttribute("libro") Libro libro,
+                                BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            return "libros/edita";
+        }
+        librosDAO.actualiza(libro);
+        return "redirect:/libros";
     }
 }
