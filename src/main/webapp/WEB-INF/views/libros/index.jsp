@@ -12,7 +12,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Listado de Libros</title>
+    <title>Listado de libros</title>
 </head>
 <body>
 <h1>Libros disponibles</h1>
@@ -20,16 +20,16 @@
     <c:forEach var="libro" items="${libros}">
         <li>
                 ${libro.isbn}, ${libro.titulo}
-            <!-- Enlaces para borrar, ver detalle y editar -->
-            <a href="borra?isbn=${libro.isbn}">Borrar</a>
-            <a href="detalle?isbn=${libro.isbn}">Detalle</a>
-            <a href="edita?isbn=${libro.isbn}">Editar</a>
+            <!-- Enlaces usando c:url para rutas absolutas -->
+            <a href="<c:url value='/libros/borra?isbn=${libro.isbn}'/>">Borrar</a>
+            <a href="<c:url value='/libros/detalle?isbn=${libro.isbn}'/>">Detalle</a>
+            <a href="<c:url value='/libros/edita?isbn=${libro.isbn}'/>">Editar</a>
         </li>
     </c:forEach>
 </ul>
 
 <h1>Alta de libro</h1>
-<form:form method="POST" modelAttribute="libro" action="libros">
+<form:form method="POST" modelAttribute="libro" action="<c:url value='/libros'/>">
     <div>
         <label>Libro:
             <form:input path="titulo" />

@@ -27,5 +27,7 @@
 - Realización del ejercicio 3 con los cambios asociados en las clases (Cristian J López)
 - Realización del ejercicio 4 con los cambios asociados en las clases (Cristian J López)
 
+### Fixed
 
+- Arreglo de errores del programa para su correcto funcionamiento (Cristian J López)
 
