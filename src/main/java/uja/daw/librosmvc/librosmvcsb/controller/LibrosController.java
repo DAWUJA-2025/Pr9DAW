@@ -1,8 +1,11 @@
 package uja.daw.librosmvc.librosmvcsb.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import uja.daw.librosmvc.librosmvcsb.dao.LibrosDAO;
 import uja.daw.librosmvc.librosmvcsb.modelo.Libro;
@@ -12,22 +15,57 @@ import uja.daw.librosmvc.librosmvcsb.modelo.Libro;
 public class LibrosController {
 
     @Autowired
+    @Qualifier("librosDAOJpa")  // Se utiliza la implementación JPA
     private LibrosDAO librosDAO;
 
     @GetMapping("")
     public String listado(ModelMap model) {
         model.addAttribute("libros", librosDAO.buscaTodos());
+        model.addAttribute("libro", new Libro()); // Para el formulario de alta
         return "libros/index";
     }
 
     @PostMapping("")
     public String altaLibro(
-            @RequestParam(value = "isbn") String isbn,
-            @RequestParam(value = "titulo") String titulo) {
+            @Valid @ModelAttribute("libro") Libro libro,
+            BindingResult result,
+            ModelMap model) {
 
-        librosDAO.crea(new Libro(isbn, titulo));
+        if (result.hasErrors()) {
+            model.addAttribute("libros", librosDAO.buscaTodos());
+            return "libros/index";
+        }
+        librosDAO.crea(libro);
+        return "redirect:/libros";
+    }
+
+    @GetMapping("/borra")
+    public String borraLibro(@RequestParam("isbn") String isbn) {
+        librosDAO.borra(isbn);
+        return "redirect:/libros";
+    }
+
+    @GetMapping("/detalle")
+    public String detalleLibro(@RequestParam("isbn") String isbn, ModelMap model) {
+        Libro libro = librosDAO.buscaPorIsbn(isbn);
+        model.addAttribute("libro", libro);
+        return "libros/detalle";
+    }
+
+    @GetMapping("/edita")
+    public String editaLibro(@RequestParam("isbn") String isbn, ModelMap model) {
+        Libro libro = librosDAO.buscaPorIsbn(isbn);
+        model.addAttribute("libro", libro);
+        return "libros/edita";
+    }
+
+    @PostMapping("/edita")
+    public String guardaEdicion(@Valid @ModelAttribute("libro") Libro libro,
+                                BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            return "libros/edita";
+        }
+        librosDAO.actualiza(libro);
         return "redirect:/libros";
     }
 }
-
-

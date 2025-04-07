@@ -1,21 +1,27 @@
 package uja.daw.librosmvc.librosmvcsb.modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+
+@Entity
 public class Libro {
 
+    @Id
+    @NotBlank(message = "El ISBN no puede estar vacío")
     private String isbn;
+
+    @NotBlank(message = "El título no puede estar vacío")
     private String titulo;
 
-    // Constructor vacío (requerido para el binding del formulario)
-    public Libro() {
-    }
+    public Libro() {}
 
-    // Constructor con parámetros
     public Libro(String isbn, String titulo) {
         this.isbn = isbn;
         this.titulo = titulo;
     }
 
-    // Getters y Setters
     public String getIsbn() {
         return isbn;
     }
